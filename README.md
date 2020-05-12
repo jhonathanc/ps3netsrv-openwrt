@@ -16,7 +16,6 @@ src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git
 make package/ps3netsrv/download
 make package/ps3netsrv/prepare
 make package/ps3netsrv/compile
-make package/ps3netsrv/clean
 ```
 6. If you didn't get any error message during the build process, you will find the compiled ps3netsrv on "./bin/packages/{yourPlatform}/ps3netsrv_feed/". So, just upload and install it to your router and config it following this guide:
 https://github.com/jhonathanc/ps3netsrv/releases
