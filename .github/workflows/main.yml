@@ -17,7 +17,7 @@ jobs:
       
     steps:
       - name: Add ps3netsrv to feeds.conf
-        run: echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf
+        run: sudo echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf
 
       - name: Build binary
         run: |
