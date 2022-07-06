@@ -1,0 +1,29 @@
+name: build-action
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: openwrtorg/sdk:latest
+      
+    steps:
+      - name: Copy feeds.conf.default as feeds.conf
+        run: cp feeds.conf.default feeds.conf
+
+      - name: Add ps3netsrv to feeds.conf
+        run: echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf
+
+      - name: Build binary
+        run: |
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+          make package/ps3netsrv/{download,prepare,compile} -j$(nproc)
