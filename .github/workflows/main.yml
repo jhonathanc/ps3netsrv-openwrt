@@ -16,12 +16,6 @@ jobs:
       image: openwrtorg/sdk:latest
       
     steps:
-      - name: Show files in working dir
-        run: ls
-
-      - name: Copy feeds.conf.default as feeds.conf
-        run: cp feeds.conf.default feeds.conf
-
       - name: Add ps3netsrv to feeds.conf
         run: echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf
 
