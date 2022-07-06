@@ -1,32 +1,46 @@
-name: build-action
+name: CI
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
-  workflow_dispatch:
+on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    
-    container:
-      image: openwrtorg/sdk:latest
-
+  build-ath79:
+    runs-on: ubuntu-20.04
     steps:
-      - name: Change to openwrt path
-        run: cd /home/build/openwrt
-        
-      - name: test
-        run: ls
-        
-      - name: Add ps3netsrv to feeds.conf.default
-        run: echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
-
-      - name: Build binary
-        run: |
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-          make package/ps3netsrv/{download,prepare,compile} -j$(nproc)
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/ath79/generic/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make package/ps3netsrv/{download,prepare,compile} -j1
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: packages-ath79
+        path: /home/runner/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/ath79/ps3netsrv_feed/
