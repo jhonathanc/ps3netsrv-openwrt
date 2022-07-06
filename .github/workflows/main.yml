@@ -16,8 +16,8 @@ jobs:
       image: openwrtorg/sdk:latest
       
     steps:
-      - name: Add ps3netsrv to feeds.conf
-        run: sudo echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf
+      - name: Add ps3netsrv to feeds.conf.default
+        run: echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
 
       - name: Build binary
         run: |
