@@ -36,7 +36,9 @@ jobs:
         echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        make package/ps3netsrv/{download,prepare,compile} -j1
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
