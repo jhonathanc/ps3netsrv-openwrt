@@ -29,9 +29,9 @@ jobs:
         unzip \
         wget \
         zlib1g-dev
-        wget -c https://downloads.openwrt.org/releases/19.07.10/targets/ath79/generic/openwrt-sdk-19.07.10-ath79-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz
-        tar xf openwrt-sdk-19.07.10-ath79-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz
-        cd openwrt-sdk-19.07.10-ath79-generic_gcc-7.5.0_musl.Linux-x86_64
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/ath79/generic/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64
         echo $USIGN_SECRET | base64 -d > key-build
         echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
         ./scripts/feeds update -a
@@ -45,4 +45,4 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         name: packages-ath79
-        path: /home/runner/openwrt-sdk-19.07.10-ath79-generic_gcc-7.5.0_musl.Linux-x86_64/bin/packages/ath79/ps3netsrv_feed/
+        path: /home/runner/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/ath79/ps3netsrv_feed/
