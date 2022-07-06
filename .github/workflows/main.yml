@@ -16,6 +16,9 @@ jobs:
       image: openwrtorg/sdk:latest
       
     steps:
+      - name: Show files in working dir
+        run: ls
+
       - name: Copy feeds.conf.default as feeds.conf
         run: cp feeds.conf.default feeds.conf
 
