@@ -33,11 +33,13 @@ jobs:
         tar xf openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
         cd openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64
         echo $USIGN_SECRET | base64 -d > key-build
-        echo "src-git ps3netsrv https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
         ./scripts/feeds update -a
-        ./scripts/feeds install -a -p ps3netsrv
+        ./scripts/feeds install -a
         make defconfig
-        make -j1
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
