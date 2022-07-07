@@ -1,26 +1,31 @@
 # ps3netsrv-openwrt
 OpenWrt ps3netsrv feed for use with the OpenWrt SDK.
 
+You can find binaries for some platforms on:
+https://github.com/jhonathanc/ps3netsrv-openwrt/actions
+
+If you want to add a new platform, you can fork this repository, edit the main.yml file to add a new job, test it and then, open a PR. I'll be really glad to merge it here :D.
+
 How to build (on linux):
 1. Follow this guide to download and prepare the SDK: https://openwrt.org/docs/guide-developer/using_the_sdk;
-2. Inside OpenWrt SDK path, you will find a file called "feeds.conf.default", copy this file and paste on same directory. Rename the new file to "feeds.conf";
-3. Open the "feeds.conf" file and put this line at the end of the file:
+2. Open terminal and go to OpenWrt SDK path (usually with "cd" command, eg: "cd /home/yourUser/somePath/...");
+3. Add the new feed to feeds.conf.default:
 ```
-src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git
+echo src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git >> feeds.conf.default
 ```
-4. Save the "feeds.conf" and close the file;
-5. On the terminal, go to the root path of OpenWrt SDK and use this commands:
+4. And use this commands to build:
 ```
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+make defconfig
 make package/ps3netsrv/download
 make package/ps3netsrv/prepare
 make package/ps3netsrv/compile
 ```
-6. If you didn't get any error message during the build process, you will find the compiled ps3netsrv on "./bin/packages/{yourPlatform}/ps3netsrv_feed/". So, just upload and install it to your router and config it following this guide:
+5. If you didn't get any error message during the build process, you will find the compiled ps3netsrv on "./bin/packages/{yourPlatform}/ps3netsrv_feed/". So, just upload and install it to your router and config it following this guide:
 https://github.com/jhonathanc/ps3netsrv/releases
 
-7. If you find any problem, let me know (open an issue) and I will try to help you.
+6. If you find any problem, let me know (open an issue) and I will try to help you.
 
 <b>After install to openwrt procedure</b>:
 - After install, you need to setup it. The easiest way is through terminal, over ssh with these commands:
