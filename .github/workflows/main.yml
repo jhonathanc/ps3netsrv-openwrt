@@ -45,5 +45,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: packages-ath79
+        name: ps3netsrv_ath79_mips_24kc
         path: /home/runner/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips_24kc/ps3netsrv_feed/
