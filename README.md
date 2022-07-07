@@ -1,6 +1,6 @@
 # ps3netsrv-openwrt
 
-![Build Status](https://github.com/ibrother/openwrt-feeds/workflows/CI/badge.svg)
+![Build Status](https://github.com/jhonathanc/ps3netsrv-openwrt/workflows/CI/badge.svg)
 
 OpenWrt ps3netsrv feed for use with the OpenWrt SDK.
 
