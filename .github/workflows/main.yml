@@ -40,6 +40,10 @@ jobs:
         make package/ps3netsrv/download
         make package/ps3netsrv/prepare
         make package/ps3netsrv/compile
+    - name: check binary file
+      run: |
+        cd ./bin/packages/
+        ls
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
