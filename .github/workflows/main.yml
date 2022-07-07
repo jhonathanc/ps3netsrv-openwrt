@@ -497,3 +497,93 @@ jobs:
       with:
         name: ps3netsrv_mips64_octeonplus
         path: /home/runner/openwrt-sdk-21.02.3-octeon_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips64_octeonplus/ps3netsrv_feed/
+
+  build-powerpc_464fp:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/apm821xx/nand/openwrt-sdk-21.02.3-apm821xx-nand_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-apm821xx-nand_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-apm821xx-nand_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_powerpc_464fp
+        path: /home/runner/openwrt-sdk-21.02.3-apm821xx-nand_gcc-8.4.0_musl.Linux-x86_64/bin/packages/powerpc_464fp/ps3netsrv_feed/
+        
+  build-powerpc_8540:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/mpc85xx/p1010/openwrt-sdk-21.02.3-mpc85xx-p1010_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-mpc85xx-p1010_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-mpc85xx-p1010_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_powerpc_8540
+        path: /home/runner/openwrt-sdk-21.02.3-apm821xx-nand_gcc-8.4.0_musl.Linux-x86_64/bin/packages/powerpc_8540/ps3netsrv_feed/
