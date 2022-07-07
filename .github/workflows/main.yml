@@ -42,6 +42,7 @@ jobs:
         make package/ps3netsrv/compile
         ls
         cd bin/packages/
+        ls
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
