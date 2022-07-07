@@ -183,7 +183,7 @@ jobs:
         name: ps3netsrv_aarch64_cortex-a72
         path: /home/runner/openwrt-sdk-21.02.3-mvebu-cortexa72_gcc-8.4.0_musl.Linux-x86_64/bin/packages/aarch64_cortex-a72/ps3netsrv_feed/
 
-  build-arm_cortex-a9:
+  build-arm_cortex-a9_vfpv3-d16:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
