@@ -220,7 +220,7 @@ jobs:
         make package/ps3netsrv/download
         make package/ps3netsrv/prepare
         make package/ps3netsrv/compile
-        cd /bin/packages/
+        cd bin/packages/
         ls
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
