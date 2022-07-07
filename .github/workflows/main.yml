@@ -211,7 +211,7 @@ jobs:
         zlib1g-dev
         wget -c https://downloads.openwrt.org/releases/21.02.3/targets/mvebu/cortexa9/openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
         tar xf openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
-        cd openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64
         echo $USIGN_SECRET | base64 -d > key-build
         echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
         ./scripts/feeds update -a
