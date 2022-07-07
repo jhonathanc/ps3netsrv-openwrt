@@ -228,4 +228,4 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         name: ps3netsrv_arm_cortex-a9
-        path: /home/runner/openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_cortex-a9/ps3netsrv_feed/
+        path: /home/runner/openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_cortex-a9_vfpv3-d16/ps3netsrv_feed/
