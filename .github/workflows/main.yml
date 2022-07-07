@@ -1082,3 +1082,319 @@ jobs:
       with:
         name: ps3netsrv_arm_cortex-a9
         path: /home/runner/openwrt-sdk-21.02.3-bcm53xx-generic_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_cortex-a9/ps3netsrv_feed/
+
+  build-arm_cortex-a9_neon:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/imx6/generic/openwrt-sdk-21.02.3-imx6_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-imx6_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-imx6_gcc-8.4.0_musl_eabi.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_arm_cortex-a9_neon
+        path: /home/runner/openwrt-sdk-21.02.3-imx6_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_cortex-a9_neon/ps3netsrv_feed/
+        
+
+  build-arm_fa526:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/gemini/generic/openwrt-sdk-21.02.3-gemini_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-gemini_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-gemini_gcc-8.4.0_musl_eabi.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_arm_fa526
+        path: /home/runner/openwrt-sdk-21.02.3-gemini_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_fa526/ps3netsrv_feed/
+        
+  build-arm_mpcore:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/oxnas/ox820/openwrt-sdk-21.02.3-oxnas-ox820_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-oxnas-ox820_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-oxnas-ox820_gcc-8.4.0_musl_eabi.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_arm_mpcore
+        path: /home/runner/openwrt-sdk-21.02.3-oxnas-ox820_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_mpcore/ps3netsrv_feed/
+        
+  build-arm_xscale:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/kirkwood/generic/openwrt-sdk-21.02.3-kirkwood_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-kirkwood_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-kirkwood_gcc-8.4.0_musl_eabi.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_arm_xscale
+        path: /home/runner/openwrt-sdk-21.02.3-kirkwood_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_xscale/ps3netsrv_feed/
+        
+  build-x86_64:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/x86/64/openwrt-sdk-21.02.3-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-x86-64_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-x86-64_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_x86_64
+        path: /home/runner/openwrt-sdk-21.02.3-x86-64_gcc-8.4.0_musl.Linux-x86_64/bin/packages/x86_64/ps3netsrv_feed/
+        
+  build-i386_pentium4:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/x86/generic/openwrt-sdk-21.02.3-x86-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-x86-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-x86-generic_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_i386_pentium4
+        path: /home/runner/openwrt-sdk-21.02.3-x86-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/i386_pentium4/ps3netsrv_feed/
+        
+  build-i386_pentium-mmx:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/x86/geode/openwrt-sdk-21.02.3-x86-geode_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-x86-geode_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-x86-geode_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_i386_pentium-mmx
+        path: /home/runner/openwrt-sdk-21.02.3-x86-geode_gcc-8.4.0_musl.Linux-x86_64/bin/packages/i386_pentium-mmx/ps3netsrv_feed/
