@@ -40,13 +40,10 @@ jobs:
         make package/ps3netsrv/download
         make package/ps3netsrv/prepare
         make package/ps3netsrv/compile
-        ls
-        cd bin/packages/
-        ls
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: packages-ath79
-        path: /home/runner/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/ath79/ps3netsrv_feed/
+        path: /home/runner/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips_24kc/ps3netsrv_feed/
