@@ -42,7 +42,8 @@ jobs:
         make package/ps3netsrv/compile
     - name: check binary file
       run: |
-        cd bin/packages/
+        cd bin
+        cd packages
         ls
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
