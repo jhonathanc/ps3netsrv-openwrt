@@ -92,3 +92,138 @@ jobs:
       with:
         name: ps3netsrv_ramips_mipsel_24kc
         path: /home/runner/openwrt-sdk-21.02.3-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mipsel_24kc/ps3netsrv_feed/
+
+  build-aarch64_cortex-a53:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/mvebu/cortexa53/openwrt-sdk-21.02.3-mvebu-cortexa53_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-mvebu-cortexa53_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-mvebu-cortexa53_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_aarch64_cortex-a53
+        path: /home/runner/openwrt-sdk-21.02.3-mvebu-cortexa53_gcc-8.4.0_musl.Linux-x86_64/bin/packages/aarch64_cortex-a53/ps3netsrv_feed/
+        
+  build-aarch64_cortex-a72:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/mvebu/cortexa72/openwrt-sdk-21.02.3-mvebu-cortexa72_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-mvebu-cortexa72_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-mvebu-cortexa72_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_aarch64_cortex-a72
+        path: /home/runner/openwrt-sdk-21.02.3-mvebu-cortexa72_gcc-8.4.0_musl.Linux-x86_64/bin/packages/aarch64_cortex-a72/ps3netsrv_feed/
+
+  build-arm_cortex-a9:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/mvebu/cortexa9/openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64.tar.xz
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_arm_cortex-a9
+        path: /home/runner/openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_cortex-a9/ps3netsrv_feed/
