@@ -11,7 +11,7 @@ How to build (on linux):
 2. Open terminal and go to OpenWrt SDK path (usually with "cd" command, eg: "cd /home/yourUser/somePath/...");
 3. Add the new feed to feeds.conf.default:
 ```
-echo src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git >> feeds.conf.default
+echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
 ```
 4. And use this commands to build:
 ```
