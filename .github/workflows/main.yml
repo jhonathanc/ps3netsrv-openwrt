@@ -45,7 +45,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: ps3netsrv_ath79_mips_24kc
+        name: ps3netsrv_mips_24kc
         path: /home/runner/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips_24kc/ps3netsrv_feed/
 
   build-mipsel_24kc:
@@ -90,7 +90,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: ps3netsrv_ramips_mipsel_24kc
+        name: ps3netsrv_mipsel_24kc
         path: /home/runner/openwrt-sdk-21.02.3-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mipsel_24kc/ps3netsrv_feed/
 
   build-aarch64_cortex-a53:
@@ -220,8 +220,6 @@ jobs:
         make package/ps3netsrv/download
         make package/ps3netsrv/prepare
         make package/ps3netsrv/compile
-        cd bin/packages/
-        ls
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
@@ -229,3 +227,273 @@ jobs:
       with:
         name: ps3netsrv_arm_cortex-a9_vfpv3-d16
         path: /home/runner/openwrt-sdk-21.02.3-mvebu-cortexa9_gcc-8.4.0_musl_eabi.Linux-x86_64/bin/packages/arm_cortex-a9_vfpv3-d16/ps3netsrv_feed/
+
+  build-mips_4kec:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/realtek/generic/openwrt-sdk-21.02.3-realtek-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-realtek-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-realtek-generic_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_mips_4kec
+        path: /home/runner/openwrt-sdk-21.02.3-realtek-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips_4kec/ps3netsrv_feed/
+        
+  build-mips_mips32:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/bcm63xx/generic/openwrt-sdk-21.02.3-bcm63xx-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-bcm63xx-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-bcm63xx-generic_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_mips_mips32
+        path: /home/runner/openwrt-sdk-21.02.3-bcm63xx-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips_mips32/ps3netsrv_feed/
+        
+  build-mipsel_24kc_24kf:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/pistachio/generic/openwrt-sdk-21.02.3-pistachio_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-pistachio_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-pistachio_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_mipsel_24kc_24kf
+        path: /home/runner/openwrt-sdk-21.02.3-pistachio_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mipsel_24kc_24kf/ps3netsrv_feed/
+        
+  build-mipsel_74kc:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/bcm47xx/mips74k/openwrt-sdk-21.02.3-bcm47xx-mips74k_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-bcm47xx-mips74k_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-bcm47xx-mips74k_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_mipsel_74kc
+        path: /home/runner/openwrt-sdk-21.02.3-bcm47xx-mips74k_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mipsel_74kc/ps3netsrv_feed/
+        
+  build-mipsel_mips32:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/bcm47xx/generic/openwrt-sdk-21.02.3-bcm47xx-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-bcm47xx-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-bcm47xx-generic_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_mipsel_mips32
+        path: /home/runner/openwrt-sdk-21.02.3-bcm47xx-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mipsel_mips32/ps3netsrv_feed/
+
+  build-mips64_octeonplus:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: build packages
+      run: |
+        cd $HOME
+        sudo apt-get update
+        sudo apt-get install -y \
+        build-essential \
+        curl \
+        file \
+        gawk \
+        gettext \
+        git \
+        libncurses5-dev \
+        libssl-dev \
+        python2.7 \
+        python3 \
+        rsync \
+        subversion \
+        sudo \
+        swig \
+        unzip \
+        wget \
+        zlib1g-dev
+        wget -c https://downloads.openwrt.org/releases/21.02.3/targets/octeon/generic/openwrt-sdk-21.02.3-octeon_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar xf openwrt-sdk-21.02.3-octeon_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        cd openwrt-sdk-21.02.3-octeon_gcc-8.4.0_musl.Linux-x86_64
+        echo $USIGN_SECRET | base64 -d > key-build
+        echo "src-git ps3netsrv_feed https://github.com/jhonathanc/ps3netsrv-openwrt.git" >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        make defconfig
+        make package/ps3netsrv/download
+        make package/ps3netsrv/prepare
+        make package/ps3netsrv/compile
+      env:
+        USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: ps3netsrv_mips64_octeonplus
+        path: /home/runner/openwrt-sdk-21.02.3-octeon_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips64_octeonplus/ps3netsrv_feed/
