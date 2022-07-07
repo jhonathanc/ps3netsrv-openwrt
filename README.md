@@ -1,4 +1,7 @@
 # ps3netsrv-openwrt
+
+![Build Status](https://github.com/ibrother/openwrt-feeds/workflows/CI/badge.svg)
+
 OpenWrt ps3netsrv feed for use with the OpenWrt SDK.
 
 You can find binaries for some platforms on:
