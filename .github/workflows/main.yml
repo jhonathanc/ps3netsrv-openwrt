@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  build-ath79_mips_24kc:
+  build-mips_24kc:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
@@ -48,7 +48,7 @@ jobs:
         name: ps3netsrv_ath79_mips_24kc
         path: /home/runner/openwrt-sdk-21.02.3-ath79-generic_gcc-8.4.0_musl.Linux-x86_64/bin/packages/mips_24kc/ps3netsrv_feed/
 
-  build-ramips_mipsel_24kc:
+  build-mipsel_24kc:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
@@ -220,6 +220,8 @@ jobs:
         make package/ps3netsrv/download
         make package/ps3netsrv/prepare
         make package/ps3netsrv/compile
+        cd /bin/packages/
+        ls
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
