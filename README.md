@@ -5,7 +5,7 @@
 OpenWrt ps3netsrv feed for use with the OpenWrt SDK.
 
 You can find binaries for some platforms on:
-https://github.com/jhonathanc/ps3netsrv-openwrt/actions
+https://github.com/jhonathanc/ps3netsrv/releases
 
 If you want to add a new platform, you can fork this repository, edit the main.yml file to add a new job, test it and then, open a PR. I'll be really glad to merge it here :D.
 
