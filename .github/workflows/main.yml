@@ -38,8 +38,7 @@ jobs:
           arm_xscale: https://downloads.openwrt.org/releases/22.03.3/targets/kirkwood/generic/openwrt-sdk-22.03.3-kirkwood_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz,
           x86_64: https://downloads.openwrt.org/releases/22.03.3/targets/x86/64/openwrt-sdk-22.03.3-x86-64_gcc-11.2.0_musl.Linux-x86_64.tar.xz,
           i386_pentium4: https://downloads.openwrt.org/releases/22.03.3/targets/x86/generic/openwrt-sdk-22.03.3-x86-generic_gcc-11.2.0_musl.Linux-x86_64.tar.xz,
-          i386_pentium-mmx: https://downloads.openwrt.org/releases/22.03.3/targets/x86/geode/openwrt-sdk-22.03.3-x86-geode_gcc-11.2.0_musl.Linux-x86_64.tar.xz
-		    ],
+          i386_pentium-mmx: https://downloads.openwrt.org/releases/22.03.3/targets/x86/geode/openwrt-sdk-22.03.3-x86-geode_gcc-11.2.0_musl.Linux-x86_64.tar.xz ],
         upload_name: [
           mips_24kc: ps3netsrv_mips_24kc,
           mipsel_24kc: ps3netsrv_mipsel_24kc,
@@ -70,8 +69,7 @@ jobs:
           arm_xscale: ps3netsrv_arm_xscale,
           x86_64: ps3netsrv_x86_64,
           i386_pentium4: ps3netsrv_i386_pentium4,
-          i386_pentium-mmx: ps3netsrv_i386_pentium-mmx
-		    ]
+          i386_pentium-mmx: ps3netsrv_i386_pentium-mmx ]
     steps:
     - uses: actions/checkout@v1
     - name: build packages
