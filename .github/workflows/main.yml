@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        platform: [mips_24kc, mipsel_24kc, aarch64_cortex-a53, aarch64_cortex-a72, arm_cortex-a9_vfpv3-d16, mips_4kec, mips_mips32, mipsel_24kc_24kf, mipsel_74kc, mipsel_mips32, mips64_octeonplus, powerpc_464fp, powerpc_8540, aarch64_generic, arc_arc700, arc_archs, arm_arm926ej-s, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5_vfpv4, arm_cortex-a7, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_fa526, arm_mpcore, arm_xscale, x86_64, i386_pentium4, i386_pentium-mmx],
+        platform: [mips_24kc, mipsel_24kc, aarch64_cortex-a53, aarch64_cortex-a72, arm_cortex-a9_vfpv3-d16, mips_4kec, mips_mips32, mipsel_24kc_24kf, mipsel_74kc, mipsel_mips32, mips64_octeonplus, powerpc_464fp, powerpc_8540, aarch64_generic, arc_archs, arm_arm926ej-s, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5_vfpv4, arm_cortex-a7, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_fa526, arm_mpcore, arm_xscale, x86_64, i386_pentium4, i386_pentium-mmx],
         sdk_url: [
           mips_24kc: https://downloads.openwrt.org/releases/22.03.3/targets/ath79/generic/openwrt-sdk-22.03.3-ath79-generic_gcc-11.2.0_musl.Linux-x86_64.tar.xz,
           mipsel_24kc: https://downloads.openwrt.org/releases/22.03.3/targets/ramips/mt7621/openwrt-sdk-22.03.3-ramips-mt7621_gcc-11.2.0_musl.Linux-x86_64.tar.xz,
@@ -69,7 +69,7 @@ jobs:
           arm_xscale: ps3netsrv_arm_xscale,
           x86_64: ps3netsrv_x86_64,
           i386_pentium4: ps3netsrv_i386_pentium4,
-          i386_pentium-mmx: ps3netsrv_i386_pentium-mmx ]
+          i386_pentium-mmx: ps3netsrv_i386_pentium-mmx ],
     steps:
     - uses: actions/checkout@v1
     - name: build packages
