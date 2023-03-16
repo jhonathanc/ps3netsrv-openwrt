@@ -8,7 +8,8 @@ jobs:
     strategy:
       max-parallel: 3
       matrix:
-        platform: [mips_24kc, mipsel_24kc, aarch64_cortex-a53, aarch64_cortex-a72, arm_cortex-a9_vfpv3-d16, mips_4kec, mips_mips32, mipsel_24kc_24kf, mipsel_74kc, mipsel_mips32, mips64_octeonplus, powerpc_464fp, powerpc_8540, aarch64_generic, arc_archs, arm_arm926ej-s, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5_vfpv4, arm_cortex-a7, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_fa526, arm_mpcore, arm_xscale, x86_64, i386_pentium4, i386_pentium-mmx]
+        # platform: [mips_24kc, mipsel_24kc, aarch64_cortex-a53, aarch64_cortex-a72, arm_cortex-a9_vfpv3-d16, mips_4kec, mips_mips32, mipsel_24kc_24kf, mipsel_74kc, mipsel_mips32, mips64_octeonplus, powerpc_464fp, powerpc_8540, aarch64_generic, arc_archs, arm_arm926ej-s, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5_vfpv4, arm_cortex-a7, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_fa526, arm_mpcore, arm_xscale, x86_64, i386_pentium4, i386_pentium-mmx]
+        platform: [mips_24kc, mipsel_24kc, aarch64_cortex-a53, aarch64_cortex-a72, arm_cortex-a9_vfpv3-d16, mips_4kec, mips_mips32, mipsel_24kc_24kf, mipsel_74kc, mipsel_mips32, mips64_octeonplus, powerpc_464fp, powerpc_8540, aarch64_generic, arm_arm926ej-s, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5_vfpv4, arm_cortex-a7, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_fa526, arm_mpcore, arm_xscale, x86_64, i386_pentium4, i386_pentium-mmx]
         include:
           - sdk_url: https://downloads.openwrt.org/releases/22.03.3/targets/ath79/generic/openwrt-sdk-22.03.3-ath79-generic_gcc-11.2.0_musl.Linux-x86_64.tar.xz
             platform: mips_24kc
@@ -66,10 +67,10 @@ jobs:
             platform: aarch64_generic
             upload_name: ps3netsrv_aarch64_generic
             build_path: openwrt-sdk-22.03.3-layerscape-armv8_64b_gcc-11.2.0_musl.Linux-x86_64
-          - sdk_url: https://downloads.openwrt.org/releases/22.03.3/targets/archs38/generic/openwrt-sdk-22.03.3-archs38-generic_gcc-11.2.0_glibc.Linux-x86_64.tar.xz
-            platform: arc_archs
-            upload_name: ps3netsrv_arc_archs
-            build_path: openwrt-sdk-22.03.3-archs38-generic_gcc-11.2.0_glibc.Linux-x86_64
+          #- sdk_url: https://downloads.openwrt.org/releases/22.03.3/targets/archs38/generic/openwrt-sdk-22.03.3-archs38-generic_gcc-11.2.0_glibc.Linux-x86_64.tar.xz
+          #  platform: arc_archs
+          #  upload_name: ps3netsrv_arc_archs
+          #  build_path: openwrt-sdk-22.03.3-archs38-generic_gcc-11.2.0_glibc.Linux-x86_64
           - sdk_url: https://downloads.openwrt.org/releases/22.03.3/targets/at91/sam9x/openwrt-sdk-22.03.3-at91-sam9x_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
             platform: arm_arm926ej-s
             upload_name: ps3netsrv_arm_arm926ej-s
