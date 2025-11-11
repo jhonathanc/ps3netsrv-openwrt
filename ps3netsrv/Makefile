@@ -12,8 +12,8 @@ PKG_GIT_COMMIT:=cb0e765ad37d62cf68b5f0d7bdda4b477b96fba8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/aldostools/ps3netsrv/archive/refs/tags
-PKG_HASH:=e7d934ff69e6d5592e6ce6237fb3e05c861cd6a8be6f3797c7d4e3103d64ffc3
+PKG_SOURCE_URL:=https://github.com/jhonathanc/ps3netsrv/archive/refs/tags
+PKG_HASH:=ea516ff938b93898cee44ececb30a428adf4387ad66fc7e584bc6f90e59f4cb4
 PKG_INSTALL:=1
 
 PKG_MAINTAINER:=JCorrea
