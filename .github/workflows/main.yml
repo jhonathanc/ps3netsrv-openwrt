@@ -169,7 +169,7 @@ jobs:
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v4.0.0
       with:
         name: ${{ matrix.upload_name }}
         path: /home/runner/${{ matrix.build_path }}/bin/packages/${{ matrix.platform }}/ps3netsrv_feed/
