@@ -1,6 +1,7 @@
-diff -Naur a/include/compat.h b/include/compat.h
---- a/include/compat.h	2019-08-03 10:48:42.000000000 -0700
-+++ b/include/compat.h	2020-03-01 19:26:14.000000000 -0800
+diff --git forkSrcPrefix/include/compat.h forkDstPrefix/include/compat.h
+index c9943a38a088a2b6a135b2a64929a7e8c7d363f9..b879656ef180efaa768139235943d93334cec5db 100644
+--- forkSrcPrefix/include/compat.h
++++ forkDstPrefix/include/compat.h
 @@ -57,7 +57,7 @@ typedef int socklen_t;
  
  #else

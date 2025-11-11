@@ -1,6 +1,7 @@
-diff -Naur a/Makefile b/Makefile
---- a/Makefile	2019-08-03 10:48:42.000000000 -0700
-+++ b/Makefile	2020-06-08 00:19:14.000000000 -0800
+diff --git forkSrcPrefix/Makefile forkDstPrefix/Makefile
+index 002669bcd172c7b087000c7d258b325511909680..a7e4041afa79889ee568ccd5d51d6d3ef87191b9 100644
+--- forkSrcPrefix/Makefile
++++ forkDstPrefix/Makefile
 @@ -1,11 +1,11 @@
 -OS = windows
 +OS = linux
@@ -8,19 +9,11 @@ diff -Naur a/Makefile b/Makefile
  
  OUTPUT := ps3netsrv
  OBJS = src/main.o src/padlock.o src/aes.o src/compat.o src/mem.o src/File.o src/VIsoFile2.o
-
+ 
 -CFLAGS = -Wall -Wno-format -I./include -std=gnu99 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DPOLARSSL
 -CPPFLAGS += -Wall -Wno-format -I./include -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DPOLARSSL
-+CFLAGS = -Wall -I./include -std=gnu99 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DPOLARSSL
-+CPPFLAGS += -Wall -I./include -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DPOLARSSL
-
+++CFLAGS = -Wall -I./include -std=gnu99 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DPOLARSSL
+++CPPFLAGS += -Wall -I./include -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DPOLARSSL
+ 
  #CFLAGS += -Doff64_t=off_t
  #CPPFLAGS += -Doff64_t=off_t
-@@ -18,7 +18,7 @@ LIBS = -lstdc++
-
- ifeq ($(OS), linux)
--LIBS += -lpthread
-+LIBS += -lpthread -lgcc_eh
- endif
-
- ifeq ($(OS), windows)
