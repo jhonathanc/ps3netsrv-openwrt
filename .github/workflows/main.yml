@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build-packages:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       max-parallel: 3
       matrix:
@@ -146,7 +146,7 @@ jobs:
         git \
         libncurses5-dev \
         libssl-dev \
-        python2.7 \
+        python2 \
         python3 \
         rsync \
         subversion \
@@ -169,7 +169,7 @@ jobs:
       env:
         USIGN_SECRET: ${{ secrets.USIGN_SECRET }}
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v4.0.0
       with:
         name: ${{ matrix.upload_name }}
         path: /home/runner/${{ matrix.build_path }}/bin/packages/${{ matrix.platform }}/ps3netsrv_feed/
