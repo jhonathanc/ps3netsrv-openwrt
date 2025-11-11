@@ -146,7 +146,7 @@ jobs:
         git \
         libncurses5-dev \
         libssl-dev \
-        python2.7 \
+        python2 \
         python3 \
         rsync \
         subversion \
