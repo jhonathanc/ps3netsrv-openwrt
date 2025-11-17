@@ -9,7 +9,7 @@ function index()
 		return
 	end
 
-	entry({"admin", "services", "ps3netsrv"}, cbi("ps3netsrv"), _("PS3 Net Server"), 30).dependent = false
+	entry({"admin", "services", "ps3netsrv"}, view("ps3netsrv/main"), _("PS3 Net Server"), 30).dependent = false
 	entry({"admin", "services", "ps3netsrv_status"}, call("ps3netsrv_status"))
 end
 
